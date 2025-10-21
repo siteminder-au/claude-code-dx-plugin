@@ -1,0 +1,18 @@
+{
+  "name": "siteminder-dx",
+  "version": "1.0.0",
+  "description": "Runs npx @siteminder/dx commands",
+  "author": {
+    "name": "SiteMinder",
+    "email": "admin@siteminder.com",
+    "url": "https://github.com/siteminder"
+  },
+  "homepage": "https://docs.example.com/plugin",
+  "repository": "https://github.com/author/plugin",
+  "license": "MIT",
+  "keywords": ["release", "deploy"],
+  "commands": ["./commands/status.md"],
+  "agents": ["./agents/code-releaser.md"],
+  "hooks": [],
+  "mcpServers": []
+}
