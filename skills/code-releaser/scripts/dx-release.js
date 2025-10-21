@@ -1,9 +1,9 @@
-// dx-release.js
+#!/usr/bin/env zx
+
 // A Claude Code plugin that initiates a release process by running @siteminder/dx release command and utilises atlassian mcp to create a release document on confluence
 
 import { readFile } from 'fs/promises';
 import { join } from 'path';
-import { $, cd } from 'zx';
 
 /**
  * Plugin metadata - Claude Code uses this to understand your plugin
