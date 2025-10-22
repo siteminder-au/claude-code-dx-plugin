@@ -6,40 +6,43 @@ description: use to deploy a siteminder component using the dx command
 # Siteminder DX deploy
 
 ## Instructions
-- there is a script called (scripts/dx-deploy.js) that is used to deploy a siteminder component using the dx command.
-- this script is located in the (skills/dx-deploy/scripts/dx-deploy.js) folder, while executing find the script from there.
-- and while executing the script, it will be executed using the (zx) command.
+- dx command is available in the global node_modules folder, add it to the path before executing dx-deploy.js.
+- before executing, please add all user bash environment variables to the command.
 - ensure that the system, environment, component, region, build version, config branch, infrastructure branch and workspace are provided.
 - required arguments: system, environment, component, workspace
+- asking user to provide the workspace, and remember it for future use.
 - optional arguments: region, build version, config branch, infrastructure branch
 - once ensured user has provided all required arguments, then execute (scripts/dx-deploy.js) with all the arguments provided.
 - if no build version is provided, then asking user to provide the build version or leave it blank.
+- before executing, change executing directory to the workspace that user has provided.
 - before executing, give an outline of what is about to proceed and ask user to approve with all relevant details shown.
 - command for executing the script:
+- componentTerraformConfigPath is the path to the terraform config file for the component.
+  - example for dev: ta-config-dev/infrastructure/platform-dev/terraform.tfvars
+  - example for prod: ta-config-pciprod/infrastructure/platform-prod/terraform.tfvars
+  - with region: ta-config-dev/infrastructure/platform-dev/apac/terraform.tfvars
+- configBranch is the branch to checkout in the config repo, if it exists. default: master
+- infrastructureBranch is the branch to checkout in the app infrastructure repo, if it exists. default: master
+- buildVersion is the build version to deploy.
+  - if no build version is provided, then don't have to provide the argument in the command.
 ```bash
-dx-deploy.js --system <system> --environment <environment> --component <component> --workspace <workspace> --region <region> --build-version <build-version> --config-branch <config-branch> --infrastructure-branch <infrastructure-branch>
+dx infrastructure deploy -C <componentTerraformConfigPath> -b <configBranch> -i <infrastructureBranch> -V <buildVersion>
 ```
 - if any optional arguments are not provided, then don't have to provide the argument in the command.
-- for example: if region is not provided, then the command should be:
-```bash
-dx-deploy.js --system <system> --environment <environment> --component <component> --workspace <workspace> --build-version <build-version> --config-branch <config-branch> --infrastructure-branch <infrastructure-branch>
-```
-
-- once the command is executed, return the output and don't show any additional text.
-- if any error occurs, then return the error message and don't show any additional text.
-- and do not start any additional actions, and ask user to approve for further actions.
+- present all stdout and stderr output to the user.
+- then wait for user to approve for further actions.
 
 ## Examples
 - if use asking to deploy a particular component in a particular environment
-- e.g: "deploy google-gha provider api to platform-dev"
+- e.g: "deploy google-gha provider-api to platform-dev"
 - then the command should be:
 ```bash
-dx-deploy.js --system google-gha --environment platform-dev --component provider-api --workspace ~/worskapcename  --config-branch master --infrastructure-branch master
+dx infrastructure deploy -C google-gha-config-dev/provider-api/platform-dev/terraform.tfvars -b master -i master
 ```
 
 - if user asking to deploy a particular component in a particular environment and region
 - e.g: "deploy tbb-google pricing-bridge to platform-dev apac"
 - then the command should be:
 ```bash
-dx-deploy.js --system tbb-google --environment platform-dev --component pricing-bridge --workspace ~/worskapcename --region apac --config-branch master --infrastructure-branch master
+dx infrastructure deploy -C tbb-google-config-dev/pricing-bridge/platform-dev/apac/terraform.tfvars -b master -i master
 ```
