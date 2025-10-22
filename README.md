@@ -11,7 +11,7 @@
   }
 ```
 3. `code ~/.claude/anthropic_key.sh`  or vim etc.
-4. echo "<put the claude api key value between quotation marks>"
+4. echo "your claude api key"
 5. `chmod +x ~/.claude/anthropic_key.sh`
 
 ### add and install this plugin to claude code
