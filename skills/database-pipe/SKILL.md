@@ -1,156 +1,41 @@
-from pathlib import Path
-
-# Define the updated SKILL.md content based on the current execute() behavior
-updated_skill_md = """---
-name: Siteminder DX MySQL Pipe
-description: Create a local MySQL tunnel using Siteminder DX infrastructure mysql-pipe command.
+---
+name: MySQL Pipe Connection
+description: Establish a local MySQL pipe to a remote database host using the dx infrastructure mysql-pipe command.
 ---
 
 # Siteminder DX MySQL Pipe
 
-## Instructions
+This skill creates a local forward (port tunnel) to a remote MySQL database using `dx infrastructure mysql-pipe`. It returns the local host/port you can connect your MySQL client to while securely tunneling traffic to the specified remote RDS/Aurora host.
 
-- This skill creates a local MySQL tunnel to a remote host using `dx-mysql-pipe.js`.
-- Required input:
-  - `host` — the remote MySQL host (e.g., `platform-dev-ppay-infrastructure.cluster-cfni24qvajia.us-west-2.rds.amazonaws.com`)
-- Optional inputs:
-  - `port` — local port to bind the tunnel (if omitted, a free port is automatically selected)
-  - `extraArgs` — optional extra arguments for the DX command (e.g., `--verbose true`)
-  - `detach` — boolean; if true (default), tunnel runs as a background process
-- **Interactive prompts**:
-  - If `host` or `port` is missing and the script runs in a terminal, the plugin prompts the user:
-    ```
-    Enter MySQL host:
-    Enter local port (leave blank to auto-pick):
-    ```
-- The plugin should be invoked programmatically by Claude via:
-```javascript
-execute({ tool_name: 'mysql_pipe', tool_input: { host: '<host>', port: <port>, extraArgs: '...', detach: true } })
+## Parameters
+- host (target_database_host): The remote MySQL hostname, e.g. `platform-dev-ppay-infrastructure.cluster-cfni24qvajia.us-west-2.rds.amazonaws.com`
+- port (local_forward_port): A chosen available local TCP port (e.g. `13305`). If omitted, an open port can be auto-selected by tooling (plugin behavior).
+
+## Behavior
+1. Validates that a remote host is provided.
+2. Uses the dx CLI to start a long-running pipe process.
+3. Exposes a local endpoint: `mysql://127.0.0.1:<port>`.
+4. User can terminate the pipe (Ctrl+C) when finished.
+
+## Command Template
+```bash
+dx infrastructure mysql-pipe -h <remote_host> -p <local_port>
 ```
 
-Once inputs are provided, the plugin:
-
-Starts a background tunnel process (if detach: true)
-
-Returns a structured response with:
-
-usedLocalPort — the local port bound
-
-pid — process ID (if detached)
-
-logPath — path to the log file
-
-message — confirmation and connection info
-
-To stop a tunnel, use the stop_tunnel tool:
-
-```
-execute({ tool_name: 'stop_tunnel', tool_input: { pid: <pid> } })
+## Example
+Connect to a remote dev Payments database and forward locally on port 13305:
+```bash
+dx infrastructure mysql-pipe -h platform-dev-ppay-infrastructure.cluster-cfni24qvajia.us-west-2.rds.amazonaws.com -p 13305
 ```
 
-or
+## Usage Guidance
+- Pick a local port that is not already in use (commonly > 1024). If unsure, allow auto-selection or test availability.
+- Multiple pipes can run concurrently if each uses a unique local port.
+- After establishing the pipe, configure your MySQL client to connect to `127.0.0.1` with the forwarded port and standard credentials for the remote DB.
+- Stop the session to tear down the tunnel.
 
-```
-execute({ tool_name: 'stop_tunnel', tool_input: { port: <port> } })
-```
+## Troubleshooting
+- Port already in use: choose another port (e.g. increment by 1).
+- Permission errors: ensure `dx` CLI is installed and in PATH.
+- Host unreachable: verify VPN or network access to the target infrastructure.
 
-Always confirm with the user before starting a tunnel.
-
-Display tunnel connection details (127.0.0.1:<usedLocalPort>) and log location once started.
-
-Examples:
-
-Example 1: Start tunnel (programmatic, auto port)
-
-User request:
-
-```
-"Connect to platform-dev database"
-```
-
-Programmatic call:
-
-```
-execute({
-  tool_name: 'mysql_pipe',
-  tool_input: {
-    host: 'platform-dev-ppay-infrastructure.cluster-cfni24qvajia.us-west-2.rds.amazonaws.com'
-  }
-});
-```
-
-Result returned:
-
-
-✅ Tunnel established
-Host: platform-dev-ppay-infrastructure.cluster-cfni24qvajia.us-west-2.rds.amazonaws.com
-Local: 127.0.0.1:13277
-PID: 32452
-Logs: ./dx-mysql-pipe-logs/dx-mysql-pipe_platform-dev_13277.log
-
-Example 2: Start tunnel with port specified
-
-```
-execute({
-  tool_name: 'mysql_pipe',
-  tool_input: {
-    host: 'platform-dev-ppay-infrastructure.cluster-cfni24qvajia.us-west-2.rds.amazonaws.com',
-    port: 13305
-  }
-});
-```
-
-Result:
-
-```
-✅ Tunnel established
-Host: platform-dev-ppay-infrastructure.cluster-cfni24qvajia.us-west-2.rds.amazonaws.com
-Local: 127.0.0.1:13305
-PID: 32453
-Logs: ./dx-mysql-pipe-logs/dx-mysql-pipe_platform-dev_13305.log
-```
-
-Example 3: Stop tunnel by PID
-
-```
-execute({
-  tool_name: 'stop_tunnel',
-  tool_input: { pid: 32452 }
-});
-```
-
-Result:
-
-```
-🛑 Tunnel process (PID 32452) stopped successfully.
-```
-
-Example 4: Stop tunnel by Port
-
-```
-execute({
-  tool_name: 'stop_tunnel',
-  tool_input: { port: 13305 }
-});
-```
-
-Result:
-
-```
-🛑 Tunnel process on port 13305 stopped successfully.
-```
-
-Notes
-
-CLI arguments (--host / --port) are not supported; the plugin works via programmatic execute() calls or interactive prompts.
-
-Interactive prompts appear only when host or port are missing and stdin is available.
-
-Returned data always includes:
-
-usedLocalPort, pid, logPath, and message.
-
-Logs are stored in ./dx-mysql-pipe-logs/.
-
-Track pid or usedLocalPort to stop tunnels correctly.
-"""
