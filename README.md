@@ -43,3 +43,36 @@
   - a. Run `claude`
   - b. Run `/mcp` and follow prompts to authenticate atlassian
     - i. Choose `siteminder.atlassian.net` (Confluence Access)
+
+
+
+## Usage
+
+#### for dx tunnel
+- once you enter to claude code, you can use the following command to open a tunnel to a remote host.
+- user can run `open tunnel to <target_host>` to open a tunnel to a remote host.
+example:
+```
+open tunnel to demand-manager-api.platform-dev
+```
+- user can run `stop tunnel <nickname>` to stop a tunnel.
+example:
+```
+stop tunnel platform-dev-dm-api
+```
+
+- also claude code will asking to provide a nickname for the tunnel, for nexttime you can call nickname to open the tunnel.
+example:
+```
+open tunnel to platform-dev-dm-api
+```
+
+#### for dx deploy
+- enter to claude code, and ask user to provide the following details:
+- `deploy <system> <component> <region(optional)> to <environment>`
+- claude code will asking to provide workspace, <workspace> is root folder(provide the full path) of all projects in your local machine.
+- claude code will remember the workspace for future use.
+example:
+```
+(please) deploy tbb-google pricing-birdge apac to platform-dev
+```
