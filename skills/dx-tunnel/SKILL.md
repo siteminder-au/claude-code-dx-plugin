@@ -7,6 +7,7 @@ description: open a tunnel to a remote host using the dx command
 
 ## Instructions
 - dx command is available in the global node_modules folder, add it to the path before executing dx-tunnel.js.
+- if user dosn't have dx installed in global, use `npx @siteminder/dx` to execute the command instead of `dx`.
 - before executing, please add all user bash environment variables to the command.
 - before executing, give an outline of what is about to proceed and ask user to approve with all relevant details shown.
 - required arguments: target_host, target_port, local_port
@@ -45,6 +46,13 @@ dx infrastructure tunnel --target_host <target_host> --target_port <target_port>
    dx infrastructure tunnel --target_host demand-manager-api.platform-dev --target_port 80 --local_port <local_port>
 ```
 - because platform-dev-dm-api is pointing to demand-manager-api.platform-dev.
+
+#### Example for user who dosn't have dx installed in global
+- user request: "open tunnel to demand-manager-api.platform-dev"
+- then the command should be:
+```bash
+npx @siteminder/dx infrastructure tunnel --target_host demand-manager-api.platform-dev --target_port 80 --local_port <local_port>
+```
 
 #### Example for stop the tunnel process.
 - user request: "stop platform-dev-dm-api"

@@ -7,6 +7,7 @@ description: use to deploy a siteminder component using the dx command
 
 ## Instructions
 - dx command is available in the global node_modules folder, add it to the path before executing dx-deploy.js.
+- if user dosn't have dx installed in global, use `npx @siteminder/dx` to execute the command instead of `dx`.
 - before executing, please add all user bash environment variables to the command.
 - ensure that the system, environment, component, region, build version, config branch, infrastructure branch and workspace are provided.
 - required arguments: system, environment, component, workspace
@@ -63,4 +64,11 @@ dx infrastructure deploy -C tbb-google-config-dev/pricing-bridge/platform-dev/ap
 - then the command should be:
 ```bash
 dx infrastructure deploy -C tbb-google-config-dev/content-handler/platform-dev/terraform.tfvars -b master -i master
+```
+
+#### Example for user who dosn't have dx installed in global
+- user request: "deploy tbb-google pricing-bridge apac to platform-dev"
+- then the command should be:
+```bash
+npx @siteminder/dx infrastructure deploy -C tbb-google-config-dev/pricing-bridge/platform-dev/apac/terraform.tfvars -b master -i master
 ```
