@@ -12,7 +12,7 @@ description: use to deploy a siteminder component using the dx command
 - required arguments: system, environment, component, workspace
 - asking user to provide the workspace, and remember it for future use.
 - optional arguments: region, build version, config branch, infrastructure branch
-- once ensured user has provided all required arguments, then execute (scripts/dx-deploy.js) with all the arguments provided.
+- allways asking user to provide config-branch and infrastructure-branch, if not provided, then use default values, options while asking is: master or provide your branch name.
 - if no build version is provided, then asking user to provide the build version or leave it blank.
 - before executing, change executing directory to the workspace that user has provided.
 - before executing, give an outline of what is about to proceed and ask user to approve with all relevant details shown.
