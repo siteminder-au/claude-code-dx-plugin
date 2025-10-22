@@ -36,7 +36,7 @@ const exec = async () => {
     throw new Error('Workspace is required');
   }
 
-  cd(`~/${workspace}`);
+  cd(`${workspace}`);
 
   const systemConfigPath = environment === 'prod' ? `${system}-config-pciprod` : `${system}-config-config-dev`;
 
@@ -50,7 +50,7 @@ const exec = async () => {
   const configParams = `-b ${configBranch ?? 'master'} -i ${infrastructureBranch?? 'master'}`;
   const buildVersionParams = buildVersion ? `-V ${buildVersion}` : '';
 
-  const command = `npx @siteminder/dx infrastructure deploy -C ${componentTerraformConfigPath} ${configParams} ${buildVersionParams}`;
+  const command = `dx infrastructure deploy -C ${componentTerraformConfigPath} ${configParams} ${buildVersionParams}`;
 
   const result = await $`${command}`;
   console.log(result.stdout);

@@ -8,7 +8,7 @@
     "url": "https://github.com/siteminder"
   },
   "homepage": "https://docs.example.com/plugin",
-  "repository": "https://github.com/author/plugin",
+  "repository": "https://github.com/siteminder-au/claude-code-dx-plugin",
   "license": "MIT",
   "keywords": ["release", "deploy"],
   "commands": ["./commands/status.md"],
