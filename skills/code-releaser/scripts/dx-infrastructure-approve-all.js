@@ -32,7 +32,8 @@ export async function execute({ tool_name, tool_input }) {
     try {
       const buildPath = tool_input.build_path
 
-      const { stdout, stderr } = await execAsync(`npx @siteminder/dx infrastructure approve-all --tagged-build-url ${buildPath}`)
+      const command = `npx @siteminder/dx infrastructure approve-all --tagged-build-url ${buildPath}`
+      const { stdout, stderr } = await execAsync(command)
 
       return {
         success: true,
@@ -57,4 +58,12 @@ export async function execute({ tool_name, tool_input }) {
     success: false,
     error: `Unknown tool: ${tool_name}`
   }
+}
+
+export async function initialize() {
+  console.log('Approve All plugin initialized!');
+}
+
+export async function cleanup() {
+  console.log('Approve All plugin shutting down...');
 }
