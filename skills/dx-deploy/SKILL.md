@@ -46,3 +46,21 @@ dx infrastructure deploy -C google-gha-config-dev/provider-api/platform-dev/terr
 ```bash
 dx infrastructure deploy -C tbb-google-config-dev/pricing-bridge/platform-dev/apac/terraform.tfvars -b master -i master
 ```
+
+## Examples
+
+#### Example for user asking to deploy a particular component in a particular environment
+- user request: "deploy tbb-google pricing-bridge apac to platform-dev"
+- should change to the workspace directory before executing the command.
+- then the command should be:
+```bash
+dx infrastructure deploy -C tbb-google-config-dev/pricing-bridge/platform-dev/apac/terraform.tfvars -b master -i master
+```
+
+#### Example for user asking to deploy a particular component in a particular environment and region
+- user request: "deploy tbb-google content-handler to platform-dev"
+- should change to the workspace directory before executing the command.
+- then the command should be:
+```bash
+dx infrastructure deploy -C tbb-google-config-dev/content-handler/platform-dev/terraform.tfvars -b master -i master
+```
