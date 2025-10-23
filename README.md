@@ -34,7 +34,8 @@
 ```
 3. run `./copy-to-local.sh` to copy the plugin to the local directory.
 4. start claude code
-5. in claude run `/plugin marketplace add ./dev-marketplace`
+5. in claude run `/plugin marketplace add ~/.claude/plugins/dev-marketplace`
+  - make sure you have plugins directory in your .claude directory.
 6. once successfully added. then run `/plugin install siteminder-dx@dev-marketplace`
 
 ### To Setup Atlassian MCP
