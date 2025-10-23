@@ -11,7 +11,6 @@ This demo app shows how you can use the SUI Model Context Protocol (MCP) server 
 ## 1. Install & Run the Demo App
 
 ```bash
-cd sui-mcp-demo
 npm install
 npm run dev
 ```
@@ -20,9 +19,9 @@ App runs (default) at: http://localhost:5173
 
 ---
 
-## 2. Connect the SUI MCP Server
+## 2. Run the SUI MCP Server
 
-First, in a second terminal start (or ensure running) the SUI MCP / HTTP server from the sibling folder `sui-mcp-server`:
+Open a second terminal in a new tab or window. In terminal go to the `sui-mcp-server` and run it via `npm run dev`.
 
 ```bash
 cd ../sui-mcp-server
@@ -30,12 +29,10 @@ npm install   # first time only
 npm run dev   # starts HTTP + SSE server at http://localhost:3333
 ```
 
-it will show something like this when the server is ready: `MCP server listening on http://localhost:3333` the server is ready.
+## 3. Use MCP server via Claude code
+Open the claude code in terminal by typing `claude` (or another MCP‑aware chat). Once claude code is running:
 
-### Use MCP server via Claude code
-Inside Claude Code (or another MCP‑aware chat) send the bootstrap prompt so the assistant knows it can call the server:
-
-1. Ask Claude to use the MCP server
+1. Ask Claude to use the SUI MCP server running locally. This is done in step 2.
 
 ```
 you have access to the mcp server at http://localhost:3333/mcp
@@ -53,18 +50,25 @@ OR:
 curl http://localhost:3333/mcp/listComponents | jq
 ```
 
----
-
-## 3. Using the MCP Server in Chat
-
+#### Check the available components and generate a snippet (Optional)
 Once connected you can ask for higher‑level changes. The assistant will typically:
+
+In claude code: 
 
 1. List available components (`/mcp/listComponents` under the hood)
 2. Fetch detailed meta for specific ones (`/mcp/getComponentMeta/:name`)
 3. Generate code snippets (`/mcp/generateSnippet`)
 4. Insert or refactor Vue SFCs in `src/components` or pages in `src`.
 
-### Example Prompts
+---
+
+## 3. Run a prompt to generate the UI based on sui components
+
+```
+Update the home page to showcase the SUI MCP Server. use sui card, button and other components and generate a responsive card section with: (a) a headline describing what the SUI MCP server does, (b) bullet points of benefits (faster discovery, automated snippet generation, consistent imports), (c) buttons that link to documentation placeholders. Use free online placeholder images (unsplash) in the cards. Keep styling consistent with existing components if available.
+```
+
+## Example Prompts
 
 Try pasting (or adapting) these after connection:
 
@@ -84,23 +88,3 @@ Try pasting (or adapting) these after connection:
 	> Render a preview for a card layout with three `SmButton` components in different variants.
 
 Feel free to iterate: ask the assistant to refine accessibility, add ARIA labels, extract repeated UI into smaller components, etc.
-
----
-
-## 4. Folder Layout (Demo)
-
-| Path | Purpose |
-| ---- | ------- |
-| `src/main.js` | App bootstrap |
-| `src/App.vue` | Root shell |
-| `src/components/` | Demo components (targets for MCP modifications) |
-| `src/router/` | Route definitions |
-| `src/services/i18n/` | i18n scaffolding |
-
----
-
-## 5. Safety / Tips
-
-* Commit before large AI refactors so you can diff changes.
-* If metadata seems stale, ensure the server `component-meta.json` was regenerated (`npm run generate-meta` in `sui-mcp-server`).
-* You can stop the server with Ctrl+C and restart; the chat can reconnect using the same bootstrap prompt.
