@@ -54,6 +54,10 @@
 
 ## Usage
 
+#### List all available Skills
+- enter claude
+- ask claude to `List all available Skills` or `What Skills are available?`
+
 #### for dx tunnel
 - once you enter to claude code, you can use the following command to open a tunnel to a remote host.
 - user can run `open tunnel to <target_host>` to open a tunnel to a remote host.
