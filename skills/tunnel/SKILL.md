@@ -1,6 +1,6 @@
 ---
 name: dx tunnel
-description: open a tunnel to remote host using dx command, and provide a nickname for the tunnel for future use, for example: open tunnel to demand-manager-api.platform-dev.
+description: open a tunnel to remote host using dx command, and provide a nickname for the tunnel for future use, for example "open tunnel to demand-manager-api.platform-dev".
 ---
 
 # dx tunnel
