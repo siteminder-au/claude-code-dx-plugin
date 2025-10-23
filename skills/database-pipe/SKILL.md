@@ -13,18 +13,26 @@ This skill creates a local forward (port tunnel) to a remote MySQL database usin
 - <local_port> (local_forward_port): A chosen available local TCP port (e.g. `13305`). If omitted, an open port can be auto-selected by tooling (plugin behavior).
 
 ## Behavior
-1. Validates <remote_host> or <nickname> is provided.
-2. asking user to provide <local_port>. If no port is provided, then use a default port between 7000 to 7999, make sure the port is not in use in any other background process.
-3. if user provide a nickname at <remote_host>, then don't ask user to provide <nickname> again, and use the <nickname> to get the real <remote_host> then use in the command.
-4. asking user to provide a <nickname> for the <remote_host> and remember it in cache and for future use.
-5. provide a short nickname for user choose in option.
-6. show the command will be executed to the user for approval.
-7. execute the command as a background process, should not block claude code main process.
-8. User can terminate the pipe process by asking to stop the process.
+- Validates <remote_host> or <nickname> is provided.
+- asking user to provide <local_port>. If no port is provided, then use a default port between 7000 to 7999, make sure the port is not in use in any other background process.
+- if user provide a nickname at <remote_host>, then don't ask user to provide <nickname> again, and use the <nickname> to get the real <remote_host> then use in the command.
+- asking user to provide a <nickname> for the <remote_host> and remember it in cache and for future use.
+- provide a short nickname for user choose in option.
+- dx command is available in the global node_modules folder, add it to the path before executing dx-tunnel.js.
+- if user dosn't have dx installed in global, use `npx @siteminder/dx` to execute the command instead of `dx`.
+- show the command will be executed to the user for approval.
+- execute the command as a background process, should not block claude code main process.
+- User can terminate the pipe process by asking to stop the process.
 
 ## Command Template
+
+#### with dx command installed in global:
 ```bash
 dx infrastructure mysql-pipe -h <remote_host> -p <local_port>
+```
+#### with npx @siteminder/dx installed in global:
+```bash
+npx @siteminder/dx infrastructure mysql-pipe -h <remote_host> -p <local_port>
 ```
 
 ## Example
