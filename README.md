@@ -56,6 +56,10 @@
 
 [SUI Vue 3 MCP](https://github.com/siteminder-au/claude-code-sui-mcp)
 
+* Exposes SUI components metadata via MCP Server
+* Reduces manual UI development effort with SUI
+* Lets AI generate designs from natural language (e.g. "Generate an upsell page using SUI components")
+
 ## DX Plugin Usage
 
 #### List all available Skills
