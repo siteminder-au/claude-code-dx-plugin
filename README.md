@@ -76,3 +76,15 @@ example:
 ```
 (please) deploy tbb-google pricing-birdge apac to platform-dev
 ```
+
+#### for dx approve
+- enter claude
+- type `approve all for {{ tagged buildkite link }}`
+- will show a list of all the pending approval builds
+- type `yes/approve` to final confirm
+
+#### for dx list
+- enter claude
+- type `dx list`, this will show a list of all the `list command` options in dx
+- select the one you wanna run
+- add required options as the claude suggests
