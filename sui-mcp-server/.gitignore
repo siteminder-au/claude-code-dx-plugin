@@ -1,0 +1,4 @@
+node_modules
+dist
+component-meta.json
+.env
