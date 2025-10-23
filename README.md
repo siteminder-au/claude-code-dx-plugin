@@ -44,6 +44,12 @@
   - b. Run `/mcp` and follow prompts to authenticate atlassian
     - i. Choose `siteminder.atlassian.net` (Confluence Access)
 
+### To Setup Buildkite MCP (Readonly)
+1. `claude mcp add --scope user --transport http buildkite-read-only-toolsets https://mcp.buildkite.com/mcp/readonly --header "X-Buildkite-Toolsets: user,pipelines,builds"`
+2. `claude mcp list` - If not authenticated
+  - a. Run `claude`
+  - b. Run `/mcp` and follow prompts to authenticate buildkite
+
 
 
 ## Usage
