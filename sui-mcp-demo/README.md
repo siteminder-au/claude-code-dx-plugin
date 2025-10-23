@@ -26,15 +26,28 @@ npm install   # first time only
 npm run dev   # starts HTTP + SSE server at http://localhost:3333
 ```
 
-Once it shows `MCP server listening on http://localhost:3333` the server is ready.
+it will show something like this when the server is ready: `MCP server listening on http://localhost:3333` the server is ready.
 
+### Use MCP server via Claude code
 Inside Claude Code (or another MCP‑aware chat) send the bootstrap prompt so the assistant knows it can call the server:
+
+1. Ask Claude to use the MCP server
 
 ```
 you have access to the mcp server at http://localhost:3333/mcp
 ```
+2. Let the claude know what are the available components
 
-After that, the assistant can discover endpoints and you can issue natural language requests that cause it to fetch component metadata, generate snippets and modify project files.
+```
+# in claude code
+# test the mcp server and let the AI know the all available components
+
+curl -X POST http://localhost:3333/mcp/initialize
+
+OR:
+
+curl http://localhost:3333/mcp/listComponents | jq
+```
 
 ---
 

@@ -7,54 +7,7 @@
 </template>
 
 <script setup>
-import { useRouter } from 'vue-router';
-
-const router = useRouter();
-function navigateTo(path) {
-  if (path) router.push(path);
-}
-
-const features = [
-  {
-    icon: '📋',
-    title: 'Task Management',
-    description: 'Organize tasks with priorities, categories, and deadlines in one place.',
-    ctaRoute: '/todo',
-    ctaText: 'Try It Now'
-  },
-  {
-    icon: '🎨',
-    title: 'Beautiful Design',
-    description: 'Clean, modern interface built with Siteminder UI components.',
-    ctaRoute: '/accordion',
-    ctaText: 'View Components'
-  },
-  {
-    icon: '⚡',
-    title: 'Lightning Fast',
-    description: 'Vue 3 performance with local persistence for instant access.',
-    ctaRoute: '/buttons',
-    ctaText: 'Explore More'
-  },
-  {
-    icon: '📱',
-    title: 'Responsive',
-    description: 'Works seamlessly on desktop, tablet, and mobile devices.',
-    badge: { type: 'success', text: 'Mobile Ready' }
-  },
-  {
-    icon: '🔒',
-    title: 'Privacy First',
-    description: 'Local-only data storage. No servers, no tracking.',
-    badge: { type: 'info', text: '100% Private' }
-  },
-  {
-    icon: '🎯',
-    title: 'Stay Focused',
-    description: 'Filter tasks, prioritize, and track progress with stats.',
-    badge: { type: 'warning', text: 'Goal Oriented' }
-  }
-];
+//
 </script>
 
 <style scoped>
