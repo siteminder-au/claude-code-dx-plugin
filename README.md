@@ -51,8 +51,11 @@
   - b. Run `/mcp` and follow prompts to authenticate buildkite
 
 
+## MCP for SUI Vue 3
 
-## Usage
+[SUI Vue 3 MCP](https://github.com/siteminder-au/claude-code-sui-mcp)
+
+## DX Plugin Usage
 
 #### List all available Skills
 - enter claude
