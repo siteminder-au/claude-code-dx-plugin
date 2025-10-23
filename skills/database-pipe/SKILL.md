@@ -1,5 +1,5 @@
 ---
-name: MySQL Pipe Connection
+name: dx mysql pipe
 description: Establish a local MySQL pipe to a remote database host using the dx infrastructure mysql-pipe command.
 ---
 

@@ -1,5 +1,5 @@
 ---
-name: Siteminder DX deploy
+name: dx deploy
 description: use to deploy a siteminder component using the dx command
 ---
 

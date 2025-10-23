@@ -1,5 +1,5 @@
 ---
-name: DX approve all
+name: dx approve all
 description: use to approve all builds in a tagged buildkite link using the dx command
 ---
 
