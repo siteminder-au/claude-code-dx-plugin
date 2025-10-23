@@ -3,4 +3,4 @@
 DEST="$HOME/.claude/plugins/dev-marketplace/siteminder-dx"
 SCRIPT_NAME="$(basename "$0")"
 
-rsync -av --exclude 'README.md' --exclude '.DS_Store' --exclude '.git' --exclude 'sui-mcp-demo' --exclude 'sui-mcp-server' --exclude "$SCRIPT_NAME" ./ "$DEST"
+rsync -av --exclude 'README.md' --exclude '.DS_Store' --exclude '.git' --exclude "$SCRIPT_NAME" ./ "$DEST"
