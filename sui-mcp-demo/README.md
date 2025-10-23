@@ -1,5 +1,9 @@
 # SUI MCP Demo (Vue 3 + Vite)
 
+<p align="center">
+	<img src="./src/assets/hero-image.png" alt="SUI MCP Demo Hero" width="820" />
+</p>
+
 This demo app shows how you can use the SUI Model Context Protocol (MCP) server to accelerate UI development by asking an AI assistant (Claude Code) to understand existing components, generate snippets, and refactor pages.
 
 ---
@@ -65,7 +69,7 @@ Once connected you can ask for higher‑level changes. The assistant will typica
 Try pasting (or adapting) these after connection:
 
 1. Update the home page:
-	> Update the home page to showcase the SUI MCP Server. Add a responsive card section with: (a) a headline describing what the MCP server does, (b) bullet points of benefits (faster discovery, automated snippet generation, consistent imports), (c) buttons that link to documentation placeholders. Use free online placeholder images (unsplash) in the cards. Keep styling consistent with existing components if available.
+	> Update the home page to showcase the SUI MCP Server. use sui card, button and other components and generate a responsive card section with: (a) a headline describing what the SUI MCP server does, (b) bullet points of benefits (faster discovery, automated snippet generation, consistent imports), (c) buttons that link to documentation placeholders. Use free online placeholder images (unsplash) in the cards. Keep styling consistent with existing components if available.
 
 2. Create a buttons gallery page:
 	> Create a new page `ButtonsGallery.vue` that lists every available button component from the SUI library. For each button show: variant name, a live example instance, and the snippet used to render it. Add a short intro paragraph at the top. Route it via the app's router and add a navigation link.
