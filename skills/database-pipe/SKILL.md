@@ -28,7 +28,7 @@ user request:
 - "open db pipe to platform-dev-ppay-infrastructure.cluster-cfni24qvajia.us-west-2.rds.amazonaws.com"
 - "mysql pipe to platform-dev-ppay-infrastructure.cluster-cfni24qvajia.us-west-2.rds.amazonaws.com"
 - "pipe to platform-dev-ppay-infrastructure.cluster-cfni24qvajia.us-west-2.rds.amazonaws.com"
-meaning:
+- above examples all mean the same thing:
 - <remote_host> is platform-dev-ppay-infrastructure.cluster-cfni24qvajia.us-west-2.rds.amazonaws.com
 - <local_port> is not provided, then use a default port between 7000 to 7999, make sure the port is not in use in any other background process.
 
