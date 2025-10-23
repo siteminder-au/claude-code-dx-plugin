@@ -28,6 +28,7 @@ description: use to deploy a siteminder component using the dx command
 - componentTerraformConfigPath is the path to the terraform config file for the component.
   - If region IS NOT provided this will be <workspace>/<system>-config-<realm>/<component>/<environment>/terraform.tfvars
   - If region IS provided this will be <workspace>/<system>-config-<realm>/<component>/<environment>/<region>terraform.tfvars
+  - check <component> is existing under <system>-config-<realm>, if not, try find <component>-inf or <component>-app, if not found, error out.
 - configBranch is the branch to checkout in the config repo, if it exists. default: master
 - infrastructureBranch is the branch to checkout in the app infrastructure repo, if it exists. default: master
 - buildVersion is the build version to deploy.
