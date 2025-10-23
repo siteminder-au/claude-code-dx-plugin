@@ -18,6 +18,7 @@ npx @siteminder/dx infrastructure approve-all --tagged-build-url <build_path>
 ```
 - present all stdout and stderr output to the user.
 - then wait for user to approve for further actions.
+- print a list of all the files pending for approval, also count the total file number
 
 ## Examples
 
