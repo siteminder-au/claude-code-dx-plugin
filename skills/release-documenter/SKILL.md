@@ -18,10 +18,13 @@ description: Will handle creation of Atlassian Confluence release documentation 
 - If yes or was explicitly asked to make a release document and wasn't necessarily after a code release then proceed.
 - `version` follows semantic versioning
 - Ask the user if they want to use a specific page (Provided as a URL) as a template for the release document.
-  - Have a default value of: `https://siteminder.atlassian.net/wiki/spaces/AProg/pages/4268556358/v0.101.0`
+  - Have a default value of: `https://siteminder.atlassian.net/wiki/spaces/AProg/pages/4311810049/v+version`
   - Asks the user if they want to provide a template for the release document (can be remembered for later and mapped differently for each system, saved for future prompts)
-- For the system the release document is being made for, use the MCP server to find the location where release documentation is kept for that system
-  - page is normally labeled as `v<version>`
+  - The template provided may have variables defined in the format [[<variable name>]]
+  - When replacing values look for `[[system]]`, `[[version]]`, `[[deploymentDate]]`, `[[userMakingRelease]]`
+- For the system the release document is being made for, ask the user to provide the parent folder that holds the systems releases manually
+  - If provided then continue, if asked to try find it then use the MCP server to find the location where release documentation is kept for that system
+    - page is normally labeled as `v<version>`
 - Use the template to create a new release document on the new version specified and update all relevant fields in the document to reflect the new version number
   - Be sure to not alter any formatting / layout of the original template being used
 - If there any any jql queries (Used by Jira Legacy / Insert Jira Issue modal) it should be updated also with the relevant fixVersion (`version`) and project (`system`)

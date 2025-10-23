@@ -20,7 +20,8 @@
 3. **Post-Release Checks**
   - Ask: "Is the build complete and config PR merged?"
     - If **yes**:
-      - If user has buildkite MCP server setup, then use it to find the release pipeline that has been triggered by the release and monitor until any issues arise or some of it's jobs become pending and awaiting user approval / input.
+      - Ask user if they want to provide the buildkite pipeline url manually
+      - If no - If user has buildkite MCP server setup, then use it to find the release pipeline that has been triggered by the release and monitor until any issues arise or some of it's jobs become pending and awaiting user approval / input.
         - if the pipeline is pending then ask user if they want to approve the release.
           - If yes use the dx approve all skill with the pipeline link as the buildkite url to pass to the dx approve skill
       - else:
