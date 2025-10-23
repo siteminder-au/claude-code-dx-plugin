@@ -1,7 +1,7 @@
 # SUI MCP Demo (Vue 3 + Vite)
 
 <p align="center">
-	<img src="./src/assets/hero-image.png" alt="SUI MCP Demo Hero" width="820" />
+	<img src="./src/assets/hero-image.png" alt="SUI MCP Demo Hero" />
 </p>
 
 This demo app shows how you can use the SUI Model Context Protocol (MCP) server to accelerate UI development by asking an AI assistant (Claude Code) to understand existing components, generate snippets, and refactor pages.
