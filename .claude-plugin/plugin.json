@@ -11,8 +11,8 @@
   "repository": "https://github.com/siteminder-au/claude-code-dx-plugin",
   "license": "MIT",
   "keywords": ["release", "deploy"],
-  "commands": ["./commands/status.md"],
+  "commands": ["./commands/release-system.md"],
   "agents": ["./agents/code-releaser.md"],
   "hooks": [],
-  "mcpServers": []
+  "mcpServers": "./mcp-config.json"
 }
