@@ -1,5 +1,5 @@
 ---
-name: dx code releaser
+name: code releaser
 description: To initiate a release by executing the dx release command with appropriate parameters.
 ---
 
